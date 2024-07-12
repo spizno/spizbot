@@ -25,8 +25,7 @@ async function getFrogTip() {
 }
 getFrogTip()
   .then(frogTipData => {
- //   if (frogTipData) {
- //     console.log(frogTipData); // Use the tip data
+
   if(!frogTipData.ok){
     console.log('frogtips ready');
   } else {

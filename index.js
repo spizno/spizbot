@@ -1,7 +1,10 @@
 import 'dotenv/config';
+
 import getFrogTip from './frogTips.js';
 
-import { Client, GatewayIntentBits } from 'discord.js';
+// import run from './gemini.js';
+
+import { Client, GatewayIntentBits, userMention } from 'discord.js';
 
 const client = new Client({
   intents: [
@@ -19,6 +22,27 @@ client.on('ready', () => {
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
 
+  if (message.mentions.has(client.user.id)) {
+    //message.reply(text);
+   // try {
+     // const aiResponse = await run();
+      //if (aiResponse) {
+        //message.reply(`${aiResponse}`);
+      //} else {
+        //message.reply('Unable to retrieve AI response.');
+      //}
+    //} catch (error) {
+      //console.error('Error fetching Gemini response');
+      //message.reply('Response error. Try again later.');
+    //}
+    message.reply('yo');
+  } else {
+    console.error('mention response function error');
+  };
+})
+
+client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
 
   if (message.content.toLowerCase() === 'boop') {
     message.reply('beep');
@@ -35,11 +59,12 @@ client.on('messageCreate', async (message) => {
         message.reply('Try again later.');
       }
     } catch (error) {
-      console.error('Error fetching tip:', error);
+      console.error('Error fetching tip:',);
       message.reply('Try again later.');
     }
   }
 });
-// export default tipNumReq;
+
+//export default userPrompt;
 
 client.login(process.env.TOKEN);
